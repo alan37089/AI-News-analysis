@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getTrendingNews, analyzeNews, type NewsAnalysis, type TrendingNews } from "./services/geminiService";
-import { cn } from "./lib/utils";
+import { cn } from "../lib/utils";
 
 export default function App() {
   const [query, setQuery] = useState("");
