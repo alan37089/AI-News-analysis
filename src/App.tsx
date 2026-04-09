@@ -55,7 +55,7 @@ export default function App() {
       } else if (errorMsg.includes("API_KEY_INVALID")) {
         setError("API 金鑰無效，請檢查 GitHub Secrets 設定。");
       } else {
-        setError(`分析失敗：${errorMsg.substring(0, 50)}...`);
+        setError(`分析失敗：${errorMsg.substring(0, 200)}`);
       }
     } finally {
       setLoading(false);

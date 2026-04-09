@@ -62,7 +62,7 @@ export const analyzeNews = async (query: string): Promise<NewsAnalysis> => {
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-flash-latest",
+      model: "gemini-1.5-flash",
       contents: prompt,
       config: {
         responseMimeType: "application/json",
