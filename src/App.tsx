@@ -47,9 +47,16 @@ export default function App() {
     try {
       const result = await analyzeNews(query);
       setAnalysis(result);
-    } catch (err) {
-      setError("無法分析該新聞。請嘗試其他關鍵字或連結。");
-      console.error(err);
+    } catch (err: any) {
+      const errorMsg = err?.message || String(err);
+      console.error("Search Error:", err);
+      if (errorMsg.includes("API_KEY_INVALID")) {
+        setError("API 金鑰無效，請檢查 GitHub Secrets。");
+      } else if (errorMsg.includes("process is not defined")) {
+        setError("系統錯誤：金鑰注入失敗。");
+      } else {
+        setError(`分析失敗：${errorMsg.substring(0, 50)}...`);
+      }
     } finally {
       setLoading(false);
     }
