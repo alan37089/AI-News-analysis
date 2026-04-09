@@ -1,20 +1,6 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-// Use a safer way to access the injected API key
-const getApiKey = () => {
-  try {
-    // Vite will replace this string during build
-    return process.env.GEMINI_API_KEY || "";
-  } catch (e) {
-    return "";
-  }
-};
-
-const apiKey = getApiKey();
-if (!apiKey) {
-  console.warn("GEMINI_API_KEY is missing! Please check your GitHub Secrets and ensure the build process is correct.");
-}
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
 
 export interface NewsSource {
   title: string;
