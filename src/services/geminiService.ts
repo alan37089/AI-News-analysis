@@ -1,6 +1,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const apiKey = typeof process !== 'undefined' && process.env ? process.env.GEMINI_API_KEY : "";
+const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
 export interface NewsSource {
   title: string;
