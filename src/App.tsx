@@ -241,6 +241,16 @@ export default function App() {
                 )}
               </div>
 
+              {analysis?.isFallback && (
+                <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4 flex items-start gap-3 text-amber-200 text-sm">
+                  <ShieldAlert className="w-5 h-5 shrink-0 text-amber-500" />
+                  <p>
+                    由於 Google 搜尋配額已達上限，目前顯示的是基於 AI 內建知識的分析結果。
+                    部分即時新聞資訊可能未包含在內，請稍後再試以獲取最新資訊。
+                  </p>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Left Column: Core Facts & Bias */}
                 <div className="lg:col-span-1 space-y-6">
