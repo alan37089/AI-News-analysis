@@ -28,8 +28,8 @@ export interface TrendingNews {
 export const getTrendingNews = async (): Promise<TrendingNews[]> => {
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents: "List 5 current trending global news topics. For each, provide a title, a brief description, and a category (e.g., Politics, Tech, Science).",
+      model: "gemini-flash-latest",
+      contents: "List 5 current trending global news topics. For each, provide a title, a brief description, and a category (e.g., Politics, Tech, Science). Use your internal knowledge, do not use search tools for this request.",
       config: {
         responseMimeType: "application/json",
         responseSchema: {
@@ -62,7 +62,7 @@ export const analyzeNews = async (query: string): Promise<NewsAnalysis> => {
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: "gemini-flash-latest",
       contents: prompt,
       config: {
         responseMimeType: "application/json",

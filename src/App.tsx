@@ -50,10 +50,10 @@ export default function App() {
     } catch (err: any) {
       const errorMsg = err?.message || String(err);
       console.error("Search Error:", err);
-      if (errorMsg.includes("API_KEY_INVALID")) {
-        setError("API 金鑰無效，請檢查 GitHub Secrets。");
-      } else if (errorMsg.includes("process is not defined")) {
-        setError("系統錯誤：金鑰注入失敗。");
+      if (errorMsg.includes("429") || errorMsg.includes("quota")) {
+        setError("請求太頻繁了！Google 免費版 API 有次數限制，請等待 60 秒後再試一次。");
+      } else if (errorMsg.includes("API_KEY_INVALID")) {
+        setError("API 金鑰無效，請檢查 GitHub Secrets 設定。");
       } else {
         setError(`分析失敗：${errorMsg.substring(0, 50)}...`);
       }
