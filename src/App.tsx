@@ -365,9 +365,12 @@ export default function App() {
 
       <footer className="relative z-10 border-t border-white/5 py-12 mt-20 bg-black/40">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-6 opacity-70">
-            <RefreshCw className="w-4 h-4" />
-            <span className="text-sm font-mono tracking-widest uppercase text-slate-300">News Prism v1.0</span>
+          <div className="flex flex-col items-center justify-center gap-2 mb-6 opacity-70">
+            <div className="flex items-center gap-2">
+              <RefreshCw className="w-4 h-4" />
+              <span className="text-sm font-mono tracking-widest uppercase text-slate-300">News Prism v1.0.1</span>
+            </div>
+            <span className="text-[10px] text-slate-500 font-mono">最後更新: {new Date().toLocaleString('zh-TW')}</span>
           </div>
           <p className="text-slate-400 text-sm max-w-md mx-auto">
             本工具旨在提供多元視角，AI 生成內容僅供參考。請務必查閱原始報導以獲取完整資訊。
