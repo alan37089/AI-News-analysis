@@ -1,6 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 const apiKey = typeof process !== 'undefined' && process.env ? process.env.GEMINI_API_KEY : "";
+if (!apiKey) {
+  console.warn("GEMINI_API_KEY is missing! Please check your GitHub Secrets.");
+}
 const ai = new GoogleGenAI({ apiKey: apiKey || "" });
 
 export interface NewsSource {
@@ -27,7 +30,7 @@ export interface TrendingNews {
 
 export const getTrendingNews = async (): Promise<TrendingNews[]> => {
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.0-flash",
     contents: "List 5 current trending global news topics. For each, provide a title, a brief description, and a category (e.g., Politics, Tech, Science).",
     config: {
       responseMimeType: "application/json",
@@ -77,7 +80,7 @@ export const analyzeNews = async (query: string): Promise<NewsAnalysis> => {
   `;
 
   const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
+    model: "gemini-2.0-flash",
     contents: prompt,
     config: {
       responseMimeType: "application/json",
