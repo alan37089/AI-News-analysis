@@ -1,0 +1,5 @@
+{
+  "name": "新聞稜鏡 (News Prism)",
+  "description": "解決新聞氾濫與單一媒體偏見，由 AI 提取核心事實、各家觀點及潛在偏見。",
+  "requestFramePermissions": []
+}
