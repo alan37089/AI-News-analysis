@@ -1,10 +1,11 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const apiKey = typeof process !== 'undefined' && process.env ? process.env.GEMINI_API_KEY : "";
+// @ts-ignore
+const apiKey = process.env.GEMINI_API_KEY || "";
 if (!apiKey) {
   console.warn("GEMINI_API_KEY is missing! Please check your GitHub Secrets.");
 }
-const ai = new GoogleGenAI({ apiKey: apiKey || "" });
+const ai = new GoogleGenAI({ apiKey });
 
 export interface NewsSource {
   title: string;
