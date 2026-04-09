@@ -1,9 +1,18 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-// @ts-ignore
-const apiKey = process.env.GEMINI_API_KEY || "";
+// Use a safer way to access the injected API key
+const getApiKey = () => {
+  try {
+    // Vite will replace this string during build
+    return process.env.GEMINI_API_KEY || "";
+  } catch (e) {
+    return "";
+  }
+};
+
+const apiKey = getApiKey();
 if (!apiKey) {
-  console.warn("GEMINI_API_KEY is missing! Please check your GitHub Secrets.");
+  console.warn("GEMINI_API_KEY is missing! Please check your GitHub Secrets and ensure the build process is correct.");
 }
 const ai = new GoogleGenAI({ apiKey });
 
@@ -31,7 +40,7 @@ export interface TrendingNews {
 
 export const getTrendingNews = async (): Promise<TrendingNews[]> => {
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: "gemini-3-flash-preview",
     contents: "List 5 current trending global news topics. For each, provide a title, a brief description, and a category (e.g., Politics, Tech, Science).",
     config: {
       responseMimeType: "application/json",
@@ -81,7 +90,7 @@ export const analyzeNews = async (query: string): Promise<NewsAnalysis> => {
   `;
 
   const response = await ai.models.generateContent({
-    model: "gemini-2.0-flash",
+    model: "gemini-3-flash-preview",
     contents: prompt,
     config: {
       responseMimeType: "application/json",
